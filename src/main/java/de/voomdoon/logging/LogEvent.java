@@ -10,41 +10,31 @@ package de.voomdoon.logging;
 public interface LogEvent {
 
 	/**
-	 * DOCME add JavaDoc for method getError
-	 * 
-	 * @return
+	 * @return {@link Throwable} or {@code null}
 	 * @since 0.1.0
 	 */
 	Throwable getError();
 
 	/**
-	 * DOCME add JavaDoc for method getLevel
-	 * 
-	 * @return
+	 * @return {@link LogLevel}
 	 * @since 0.1.0
 	 */
 	LogLevel getLevel();
 
 	/**
-	 * DOCME add JavaDoc for method getMessage
-	 * 
-	 * @return
+	 * @return {@link Object}
 	 * @since 0.1.0
 	 */
 	Object getMessage();
 
 	/**
-	 * DOCME add JavaDoc for method getSourceClass
-	 * 
-	 * @return
+	 * @return {@link Class}
 	 * @since 0.1.0
 	 */
 	Class<?> getSourceClass();
 
 	/**
-	 * DOCME add JavaDoc for method getTime
-	 * 
-	 * @return
+	 * @return long
 	 * @since 0.1.0
 	 */
 	long getTimestamp();

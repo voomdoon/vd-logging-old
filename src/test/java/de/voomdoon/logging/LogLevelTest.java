@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
  *
  * @since 0.1.0
  */
-public class LogLevelTest {
+class LogLevelTest {
 
 	/**
 	 * @since 0.1.0

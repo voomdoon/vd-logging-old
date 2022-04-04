@@ -1,8 +1,6 @@
 package de.voomdoon.logging;
 
 /**
- * DOCME add JavaDoc for
- *
  * @author André Schulz
  *
  * @since 0.1.0
@@ -58,7 +56,7 @@ public enum LogLevel {
 	 * @return priority
 	 * @since 0.1.0
 	 */
-	int getPriority() {
+	public int getPriority() {
 		return priority;
 	}
 }

@@ -1,9 +1,10 @@
 package de.voomdoon.logging.root;
 
 import de.voomdoon.logging.LogEvent;
+import de.voomdoon.logging.LogEventHandler;
 
 /**
- * DOCME add JavaDoc for
+ * Handles the logging internally.
  *
  * @author André Schulz
  *
@@ -12,10 +13,23 @@ import de.voomdoon.logging.LogEvent;
 public interface RootLogger {
 
 	/**
-	 * DOCME add JavaDoc for method log
-	 * 
+	 * @param handler
+	 *            {@link LogEventHandler}
+	 * @since 0.1.0
+	 */
+	void addLogEventHandler(LogEventHandler handler);
+
+	/**
 	 * @param logEvent
+	 *            {@link LogEvent}
 	 * @since 0.1.0
 	 */
 	void log(LogEvent logEvent);
+
+	/**
+	 * @param handler
+	 *            {@link LogEventHandler}
+	 * @since 0.1.0
+	 */
+	void removeLogEventHandler(LogEventHandler handler);
 }

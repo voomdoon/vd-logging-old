@@ -4,9 +4,10 @@ import java.util.WeakHashMap;
 
 import de.voomdoon.logging.logger.DefaultLogger;
 import de.voomdoon.logging.root.RootLogger;
+import de.voomdoon.logging.root.SynchronousRootLogger;
 
 /**
- * DOCME add JavaDoc for
+ * Manager for logging.
  *
  * @author André Schulz
  *
@@ -25,12 +26,21 @@ public class LogManager {
 	private static final RootLogger ROOT_LOGGER;
 
 	static {
-		ROOT_LOGGER = null;
+		ROOT_LOGGER = new SynchronousRootLogger();
 	}
 
 	/**
-	 * DOCME add JavaDoc for method getLogger
+	 * Adds a {@link LogEventHandler}.
 	 * 
+	 * @param handler
+	 *            {@link LogEventHandler}
+	 * @since 0.1.0
+	 */
+	public static void addLogEventHandler(LogEventHandler handler) {
+		ROOT_LOGGER.addLogEventHandler(handler);
+	}
+
+	/**
 	 * @param clazz
 	 *            {@link Class}
 	 * @return {@link Logger}
@@ -38,6 +48,17 @@ public class LogManager {
 	 */
 	public static Logger getLogger(Class<?> clazz) {
 		return CLASS_LOGGERS.computeIfAbsent(clazz, c -> new DefaultLogger(ROOT_LOGGER, clazz));
+	}
+
+	/**
+	 * Removes a {@link LogEventHandler}.
+	 * 
+	 * @param handler
+	 *            {@link LogEventHandler}
+	 * @since 0.1.0
+	 */
+	public static void removeLogEventHandler(LogEventHandler handler) {
+		ROOT_LOGGER.removeLogEventHandler(handler);
 	}
 
 	/**

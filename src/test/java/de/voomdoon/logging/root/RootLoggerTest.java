@@ -1,9 +1,15 @@
 package de.voomdoon.logging.root;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import java.util.NoSuchElementException;
+
 import org.junit.jupiter.api.Test;
 
-import de.voomdoon.logging.LogEvent;
-import de.voomdoon.logging.LogLevel;
+import de.voomdoon.logging.test.TestLogEvent;
+import de.voomdoon.logging.test.TestLogEventHandler;
 
 /**
  * Abstract class for {@link RootLogger}.
@@ -13,59 +19,6 @@ import de.voomdoon.logging.LogLevel;
  * @since 0.1.0
  */
 public abstract class RootLoggerTest {
-
-	/**
-	 * @author André Schulz
-	 *
-	 * @since 0.1.0
-	 */
-	private static class TestLogEvent implements LogEvent {
-
-		/**
-		 * @since 0.1.0
-		 */
-		@Override
-		public Throwable getError() {
-			// TODO implement getError
-			throw new UnsupportedOperationException("'getError' not implemented at 'LogEvent'!");
-		}
-
-		/**
-		 * @since 0.1.0
-		 */
-		@Override
-		public LogLevel getLevel() {
-			// TODO implement getLevel
-			throw new UnsupportedOperationException("'getLevel' not implemented at 'LogEvent'!");
-		}
-
-		/**
-		 * @since 0.1.0
-		 */
-		@Override
-		public Object getMessage() {
-			// TODO implement getMessage
-			throw new UnsupportedOperationException("'getMessage' not implemented at 'LogEvent'!");
-		}
-
-		/**
-		 * @since 0.1.0
-		 */
-		@Override
-		public Class<?> getSourceClass() {
-			// TODO implement getSourceClass
-			throw new UnsupportedOperationException("'getSourceClass' not implemented at 'LogEvent'!");
-		}
-
-		/**
-		 * @since 0.1.0
-		 */
-		@Override
-		public long getTimestamp() {
-			// TODO implement getTimestamp
-			throw new UnsupportedOperationException("'getTimestamp' not implemented at 'LogEvent'!");
-		}
-	}
 
 	/**
 	 * @since 0.1.0
@@ -81,8 +34,66 @@ public abstract class RootLoggerTest {
 		this.rootLogger = rootLogger;
 	}
 
+	/**
+	 * @throws Exception
+	 * @since 0.1.0
+	 */
+	@Test
+	void testAddLogEventHandler_same() throws Exception {
+		TestLogEventHandler handler = new TestLogEventHandler();
+
+		rootLogger.addLogEventHandler(handler);
+		rootLogger.addLogEventHandler(handler);
+
+		rootLogger.log(new TestLogEvent());
+
+		assertThat(handler.getEvents()).hasSize(1);
+	}
+
 	@Test
 	void testLog_LogEvent() throws Exception {
 		rootLogger.log(new TestLogEvent());
+	}
+
+	/**
+	 * @throws Exception
+	 * @since 0.1.0
+	 */
+	@Test
+	void testRemoveLogEventHandler() throws Exception {
+		TestLogEventHandler handler = new TestLogEventHandler();
+
+		rootLogger.addLogEventHandler(handler);
+		rootLogger.removeLogEventHandler(handler);
+
+		rootLogger.log(new TestLogEvent());
+
+		assertThat(handler.getEvents()).isEmpty();
+	}
+
+	/**
+	 * @throws Exception
+	 * @since 0.1.0
+	 */
+	@Test
+	void testRemoveLogEventHandler_error_NoSuchElementException() throws Exception {
+		TestLogEventHandler handler = new TestLogEventHandler();
+
+		assertThatThrownBy(() -> rootLogger.removeLogEventHandler(handler)).isInstanceOf(NoSuchElementException.class)
+				.hasMessageContaining("handler");
+	}
+
+	/**
+	 * @throws Exception
+	 * @since 0.1.0
+	 */
+	@Test
+	void testRemoveLogEventHandler_error_NullPointerException() throws Exception {
+		try {
+			rootLogger.removeLogEventHandler(null);
+			fail("Missing 'NullPointerException'!");
+		} catch (NullPointerException e) {
+			assertThat(e.getMessage()).contains("handler");
+		}
 	}
 }

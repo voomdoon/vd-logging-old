@@ -1,7 +1,7 @@
 package de.voomdoon.logging;
 
 /**
- * DOCME add JavaDoc for
+ * Handler for {@link LogEvent}s.
  *
  * @author André Schulz
  *

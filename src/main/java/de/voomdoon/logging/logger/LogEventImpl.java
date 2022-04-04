@@ -38,10 +38,10 @@ public class LogEventImpl implements LogEvent {
 	private long timestamp;
 
 	/**
-	 * DOCME add JavaDoc for constructor LogEventImpl
-	 * 
 	 * @param level
+	 *            {@link LogLevel}
 	 * @param message
+	 *            {@link Object}
 	 * @since 0.1.0
 	 */
 	public LogEventImpl(LogLevel level, Object message) {
@@ -52,10 +52,12 @@ public class LogEventImpl implements LogEvent {
 	}
 
 	/**
-	 * DOCME add JavaDoc for constructor LogEventImpl
-	 * 
+	 * @param level
+	 *            {@link LogLevel}
 	 * @param message
+	 *            {@link Object}
 	 * @param error
+	 *            optional {@link Throwable}
 	 * @since 0.1.0
 	 */
 	public LogEventImpl(LogLevel level, Object message, Throwable error) {
@@ -105,9 +107,8 @@ public class LogEventImpl implements LogEvent {
 	}
 
 	/**
-	 * DOCME add JavaDoc for method setSourceClass
-	 * 
 	 * @param sourceClass
+	 *            {@link Class}
 	 * @since 0.1.0
 	 */
 	public void setSourceClass(Class<?> sourceClass) {

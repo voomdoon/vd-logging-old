@@ -24,10 +24,10 @@ public class DefaultLogger implements Logger {
 	private Class<?> sourceClass;
 
 	/**
-	 * DOCME add JavaDoc for constructor DefaultLogger
-	 * 
 	 * @param rootLogger
+	 *            {@link RootLogger}
 	 * @param sourceClass
+	 *            source {@link Class}
 	 * @since 0.1.0
 	 */
 	public DefaultLogger(RootLogger rootLogger, Class<?> sourceClass) {
@@ -157,9 +157,8 @@ public class DefaultLogger implements Logger {
 	}
 
 	/**
-	 * DOCME add JavaDoc for method log
-	 * 
 	 * @param logEventImpl
+	 *            {@link LogEventImpl}
 	 * @since 0.1.0
 	 */
 	private void log(LogEventImpl logEventImpl) {

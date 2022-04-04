@@ -31,8 +31,26 @@ public abstract class LoggerTest {
 		 * @since 0.1.0
 		 */
 		@Override
+		public void addLogEventHandler(LogEventHandler handler) {
+			// TODO implement addLogEventHandler
+			throw new UnsupportedOperationException("'addLogEventHandler' not implemented at 'RootLogger'!");
+		}
+
+		/**
+		 * @since 0.1.0
+		 */
+		@Override
 		public void log(LogEvent logEvent) {
 			EVENTS.add(logEvent);
+		}
+
+		/**
+		 * @since 0.1.0
+		 */
+		@Override
+		public void removeLogEventHandler(LogEventHandler handler) {
+			// TODO implement removeLogEventHandler
+			throw new UnsupportedOperationException("'removeLogEventHandler' not implemented at 'RootLogger'!");
 		}
 	}
 
