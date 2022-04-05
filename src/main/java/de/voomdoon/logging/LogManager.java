@@ -2,6 +2,7 @@ package de.voomdoon.logging;
 
 import java.util.WeakHashMap;
 
+import de.voomdoon.logging.handler.ConsoleLogEventHandler;
 import de.voomdoon.logging.logger.DefaultLogger;
 import de.voomdoon.logging.root.RootLogger;
 import de.voomdoon.logging.root.SynchronousRootLogger;
@@ -27,6 +28,7 @@ public class LogManager {
 
 	static {
 		ROOT_LOGGER = new SynchronousRootLogger();
+		ROOT_LOGGER.addLogEventHandler(new ConsoleLogEventHandler());
 	}
 
 	/**

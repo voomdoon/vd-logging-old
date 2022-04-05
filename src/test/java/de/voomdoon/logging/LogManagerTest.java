@@ -3,8 +3,12 @@ package de.voomdoon.logging;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.NoSuchElementException;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import de.voomdoon.logging.test.TestLogEventHandler;
@@ -100,6 +104,27 @@ public class LogManagerTest {
 	static class GetLogger_Class_Test {
 
 		/**
+		 * @since 0.1.0
+		 */
+		private PrintStream outOriginal;
+
+		/**
+		 * @since 0.1.0
+		 */
+		@BeforeEach
+		void setUp() {
+			outOriginal = System.out;
+		}
+
+		/**
+		 * @since 0.1.0
+		 */
+		@AfterEach
+		void tearDown() {
+			System.setOut(outOriginal);
+		}
+
+		/**
 		 * @throws Exception
 		 * @since 0.1.0
 		 */
@@ -108,6 +133,21 @@ public class LogManagerTest {
 			Logger actual = LogManager.getLogger(LogManagerTest.class);
 
 			assertThat(actual).isNotNull();
+		}
+
+		/**
+		 * @throws Exception
+		 * @since DOCME add inception version number
+		 */
+		@Test
+		void test_logToConsole() throws Exception {
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(out));
+
+			Logger logger = LogManager.getLogger(getClass());
+			logger.info("test-message");
+
+			assertThat(new String(out.toByteArray())).contains("test-message");
 		}
 
 		/**
