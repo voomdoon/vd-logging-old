@@ -137,7 +137,7 @@ public class LogManagerTest {
 
 		/**
 		 * @throws Exception
-		 * @since DOCME add inception version number
+		 * @since 0.1.0
 		 */
 		@Test
 		void test_logToConsole() throws Exception {
