@@ -12,6 +12,10 @@
 	<artifactId>vd-logging</artifactId>
 	<version>0.1.0-SNAPSHOT</version>
 
+	<properties>
+		<skipTestJar>false</skipTestJar>
+	</properties>
+
 	<dependencies>
 		<!-- + + + + + + + + + + test dependencies + + + + + + + + + + -->
 		<!-- + + + + + external test dependencies + + + + + -->
