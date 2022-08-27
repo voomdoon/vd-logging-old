@@ -3,6 +3,8 @@ package de.voomdoon.logging.test;
 import de.voomdoon.logging.LogEvent;
 import de.voomdoon.logging.LogLevel;
 
+//TODO use LomBock
+
 /**
  * @author André Schulz
  *
@@ -30,6 +32,9 @@ public class TestLogEvent implements LogEvent {
 	 */
 	private Class<?> sourceClass;
 
+	/**
+	 * @since 0.1.0
+	 */
 	private long timestamp;
 
 	/**
