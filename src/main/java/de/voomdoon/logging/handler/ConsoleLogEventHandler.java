@@ -61,6 +61,21 @@ public class ConsoleLogEventHandler implements LogEventHandler {
 	}
 
 	/**
+	 * DOCME add JavaDoc for method getName
+	 * 
+	 * @param sourceClass
+	 * @return
+	 * @since DOCME add inception version number
+	 */
+	private Object getName(Class<?> sourceClass) {
+		if (sourceClass == null) {
+			return "null";
+		}
+
+		return sourceClass.getName();
+	}
+
+	/**
 	 * @param level
 	 *            {@link LogLevel}
 	 * @return {@link PrintStream}
@@ -86,8 +101,8 @@ public class ConsoleLogEventHandler implements LogEventHandler {
 		sb.append(" ");
 		sb.append(logEvent.getLevel().toString());
 		sb.append(" ");
-		sb.append(logEvent.getSourceClass());
-		sb.append(" ");
+		sb.append(getName(logEvent.getSourceClass()));
+		sb.append(": ");
 		sb.append(logEvent.getMessage());
 
 		return sb.toString();
