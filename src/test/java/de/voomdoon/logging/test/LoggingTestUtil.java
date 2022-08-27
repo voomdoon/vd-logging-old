@@ -1,0 +1,83 @@
+package de.voomdoon.logging.test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
+import de.voomdoon.logging.LogEvent;
+import de.voomdoon.logging.LogEventHandler;
+
+/**
+ * DOCME add JavaDoc for
+ *
+ * @author André Schulz
+ *
+ * @since DOCME add inception version number
+ */
+public class LoggingTestUtil {
+
+	/**
+	 * @author André Schulz
+	 *
+	 * @since 0.1.0
+	 */
+	public static class Out {
+
+		/**
+		 * @since 0.1.0
+		 */
+		private String err;
+
+		/**
+		 * @since 0.1.0
+		 */
+		private String out;
+
+		/**
+		 * @param out
+		 *            {@link ByteArrayOutputStream}
+		 * @param err
+		 *            {@link ByteArrayOutputStream}
+		 * @since 0.1.0
+		 */
+		public Out(ByteArrayOutputStream out, ByteArrayOutputStream err) {
+			this.out = new String(out.toByteArray());
+			this.err = new String(err.toByteArray());
+		}
+
+		/**
+		 * @return err
+		 * @since DOCME add inception version number
+		 */
+		public String getErr() {
+			return err;
+		}
+
+		/**
+		 * @return out
+		 * @since DOCME add inception version number
+		 */
+		public String getOut() {
+			return out;
+		}
+	}
+
+	/**
+	 * @param handler
+	 *            {@link LogEventHandler}
+	 * @param logEvent
+	 *            {@link LogEvent}
+	 * @return {@link String}
+	 * @since 0.1.0
+	 */
+	public static Out runHandleLogEvent(LogEventHandler handler, LogEvent logEvent) {
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		System.setOut(new PrintStream(out));
+
+		ByteArrayOutputStream err = new ByteArrayOutputStream();
+		System.setErr(new PrintStream(err));
+
+		handler.handleLogEvent(logEvent);
+
+		return new Out(out, err);
+	}
+}
