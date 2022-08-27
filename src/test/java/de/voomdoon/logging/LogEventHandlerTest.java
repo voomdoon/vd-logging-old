@@ -1,6 +1,7 @@
 package de.voomdoon.logging;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.Test;
 
@@ -35,8 +36,9 @@ public abstract class LogEventHandlerTest {
 	 * @since 0.1.0
 	 */
 	@Test
-	protected void testHandleLogEvent() throws Exception {
-		handler.handleLogEvent(new TestLogEvent().setLevel(LogLevel.INFO).setMessage("test-message"));
+	void testHandleLogEvent() throws Exception {
+		assertDoesNotThrow(
+				() -> handler.handleLogEvent(new TestLogEvent().setLevel(LogLevel.INFO).setMessage("test-message")));
 	}
 
 	/**
