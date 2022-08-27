@@ -81,7 +81,7 @@ class ConsoleLogEventHandlerTest extends LogEventHandlerTest {
 	 */
 	@Test
 	void testHandleLogEvent_error_class() throws Exception {
-		Out out = LoggingTestUtil.runHandleLogEvent(handler,
+		Out out = LoggingTestUtil.runHandleLogEvent(() -> handler,
 				new TestLogEvent().setError(new RuntimeException("test-error")));
 
 		assertThat(out.getOut()).contains("RuntimeException");
@@ -92,7 +92,7 @@ class ConsoleLogEventHandlerTest extends LogEventHandlerTest {
 	 */
 	@Test
 	void testHandleLogEvent_error_message() throws Exception {
-		Out out = LoggingTestUtil.runHandleLogEvent(handler,
+		Out out = LoggingTestUtil.runHandleLogEvent(() -> handler,
 				new TestLogEvent().setError(new RuntimeException("test-error")));
 
 		assertThat(out.getOut()).contains("test-error");
@@ -103,7 +103,7 @@ class ConsoleLogEventHandlerTest extends LogEventHandlerTest {
 	 */
 	@Test
 	void testHandleLogEvent_level() throws Exception {
-		Out out = LoggingTestUtil.runHandleLogEvent(handler, new TestLogEvent().setLevel(LogLevel.INFO));
+		Out out = LoggingTestUtil.runHandleLogEvent(() -> handler, new TestLogEvent().setLevel(LogLevel.INFO));
 
 		assertThat(out.getOut()).contains("INFO");
 	}
@@ -113,7 +113,7 @@ class ConsoleLogEventHandlerTest extends LogEventHandlerTest {
 	 */
 	@Test
 	void testHandleLogEvent_level_ERROR() throws Exception {
-		Out out = LoggingTestUtil.runHandleLogEvent(handler, new TestLogEvent().setLevel(LogLevel.ERROR));
+		Out out = LoggingTestUtil.runHandleLogEvent(() -> handler, new TestLogEvent().setLevel(LogLevel.ERROR));
 
 		assertThat(out.getErr()).contains("ERROR");
 		assertThat(out.getOut()).isEmpty();
@@ -124,7 +124,7 @@ class ConsoleLogEventHandlerTest extends LogEventHandlerTest {
 	 */
 	@Test
 	void testHandleLogEvent_message_String() throws Exception {
-		Out out = LoggingTestUtil.runHandleLogEvent(handler, new TestLogEvent().setMessage("test-message"));
+		Out out = LoggingTestUtil.runHandleLogEvent(() -> handler, new TestLogEvent().setMessage("test-message"));
 
 		assertThat(out.getOut()).contains("test-message");
 	}
@@ -134,7 +134,7 @@ class ConsoleLogEventHandlerTest extends LogEventHandlerTest {
 	 */
 	@Test
 	void testHandleLogEvent_sourceClass() throws Exception {
-		Out out = LoggingTestUtil.runHandleLogEvent(handler,
+		Out out = LoggingTestUtil.runHandleLogEvent(() -> handler,
 				new TestLogEvent().setSourceClass(ConsoleLogEventHandlerTest.class));
 
 		assertThat(out.getOut()).contains("ConsoleLogEventHandlerTest");
@@ -145,7 +145,7 @@ class ConsoleLogEventHandlerTest extends LogEventHandlerTest {
 	 */
 	@Test
 	void testHandleLogEvent_timestamp() throws Exception {
-		Out out = LoggingTestUtil.runHandleLogEvent(handler, new TestLogEvent().setTimestamp(1641038400000L));
+		Out out = LoggingTestUtil.runHandleLogEvent(() -> handler, new TestLogEvent().setTimestamp(1641038400000L));
 
 		assertThat(out.getOut()).contains("2022-01-01 12:00:00.000");
 	}

@@ -2,6 +2,7 @@ package de.voomdoon.logging.test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.function.Supplier;
 
 import de.voomdoon.logging.LogEvent;
 import de.voomdoon.logging.LogEventHandler;
@@ -62,21 +63,21 @@ public class LoggingTestUtil {
 	}
 
 	/**
-	 * @param handler
-	 *            {@link LogEventHandler}
+	 * @param handlerSupplier
+	 *            {@link Supplier} for {@link LogEventHandler}
 	 * @param logEvent
 	 *            {@link LogEvent}
 	 * @return {@link String}
 	 * @since 0.1.0
 	 */
-	public static Out runHandleLogEvent(LogEventHandler handler, LogEvent logEvent) {
+	public static Out runHandleLogEvent(Supplier<LogEventHandler> handlerSupplier, LogEvent logEvent) {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(out));
 
 		ByteArrayOutputStream err = new ByteArrayOutputStream();
 		System.setErr(new PrintStream(err));
 
-		handler.handleLogEvent(logEvent);
+		handlerSupplier.get().handleLogEvent(logEvent);
 
 		return new Out(out, err);
 	}
