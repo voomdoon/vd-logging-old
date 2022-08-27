@@ -16,6 +16,19 @@ public class TestLogEventHandler implements LogEventHandler {
 	/**
 	 * @since 0.1.0
 	 */
+	private static final List<TestLogEventHandler> INSTANCES = new ArrayList<>();
+
+	/**
+	 * @return instances
+	 * @since DOCME add inception version number
+	 */
+	public static List<TestLogEventHandler> getInstances() {
+		return INSTANCES;
+	}
+
+	/**
+	 * @since 0.1.0
+	 */
 	private List<LogEvent> events;
 
 	/**
@@ -23,6 +36,8 @@ public class TestLogEventHandler implements LogEventHandler {
 	 */
 	public TestLogEventHandler() {
 		this(new ArrayList<>());
+
+		INSTANCES.add(this);
 	}
 
 	/**

@@ -1,0 +1,3 @@
+de.voomdoon.logging.test.TestLogEventHandler
+
+de.voomdoon.logging.connector.log4j2.Log4j2LogEventHandler

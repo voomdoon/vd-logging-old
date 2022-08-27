@@ -20,7 +20,7 @@ import de.voomdoon.logging.test.TestLogEventHandler;
  *
  * @since 0.1.0
  */
-public class LogManagerTest {
+class LogManagerTest {
 
 	/**
 	 * Test method for {@link LogManager#addLogEventHandler(LogEventHandler)}.
@@ -210,5 +210,18 @@ public class LogManagerTest {
 			assertThatThrownBy(() -> LogManager.removeLogEventHandler(null)).isInstanceOf(NullPointerException.class)
 					.hasMessageContaining("handler");
 		}
+	}
+
+	/**
+	 * DOCME add JavaDoc for method test_initialization
+	 * 
+	 * @throws Exception
+	 * @since DOCME add inception version number
+	 */
+	@Test
+	void test_initialization_addHandlers() throws Exception {
+		LogManager.getLogger(getClass()).info("test-message");
+
+		assertThat(TestLogEventHandler.getInstances()).isNotEmpty();
 	}
 }
