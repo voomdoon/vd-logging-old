@@ -26,18 +26,11 @@ public class LogManager {
 	 */
 	private static final WeakHashMap<Class<?>, Logger> CLASS_LOGGERS = new WeakHashMap<>();
 
-	/**
-	 * @since 0.1.0
-	 */
-	private static final RootLogger ROOT_LOGGER;
+	private static final LogManager INSTANCE;
 
 	static {
-		ROOT_LOGGER = new SynchronousRootLogger();
-
-		// TODO add ConsoleLogEventHandler only if there is no other
-		ROOT_LOGGER.addLogEventHandler(new ConsoleLogEventHandler());
-
-		addLogEventHandlers();
+		INSTANCE = new LogManager();
+		INSTANCE.logInitialization();
 	}
 
 	/**
@@ -48,27 +41,7 @@ public class LogManager {
 	 * @since 0.1.0
 	 */
 	public static void addLogEventHandler(LogEventHandler handler) {
-		System.out.println("LogManager: add LogEventHandler " + handler);
-		ROOT_LOGGER.addLogEventHandler(handler);
-	}
-
-	/**
-	 * DOCME add JavaDoc for method addLogEventHandlers
-	 *
-	 * @since DOCME add inception version number
-	 */
-	private static void addLogEventHandlers() {
-		try {
-			Files.readAllLines(Paths.get(LogManager.class.getResource("/LogEventHandlers.csv").toURI()))
-					.forEach(line -> {
-						if (!line.isEmpty()) {
-							tryAddLogEventHandler(line);
-						}
-					});
-		} catch (IOException | URISyntaxException e) {
-			// TODO implement error handling
-			throw new RuntimeException("Error at 'addLogEventHandlers': " + e.getMessage(), e);
-		}
+		INSTANCE.addLogEventHandlerInternal(handler);
 	}
 
 	/**
@@ -78,7 +51,7 @@ public class LogManager {
 	 * @since 0.1.0
 	 */
 	public static Logger getLogger(Class<?> clazz) {
-		return CLASS_LOGGERS.computeIfAbsent(clazz, c -> new DefaultLogger(ROOT_LOGGER, clazz));
+		return INSTANCE.getLoggerInternal(clazz);
 	}
 
 	/**
@@ -89,7 +62,98 @@ public class LogManager {
 	 * @since 0.1.0
 	 */
 	public static void removeLogEventHandler(LogEventHandler handler) {
-		ROOT_LOGGER.removeLogEventHandler(handler);
+		INSTANCE.removeLogEventHandlerInternal(handler);
+	}
+
+	/**
+	 * @since 0.1.0
+	 */
+	private final RootLogger rootLogger;
+
+	/**
+	 * @since 0.1.0
+	 */
+	LogManager() {
+		rootLogger = new SynchronousRootLogger();
+
+		// TODO add ConsoleLogEventHandler only if there is no other
+		rootLogger.addLogEventHandler(new ConsoleLogEventHandler());
+
+		addLogEventHandlers();
+	}
+
+	private void addLogEventHandlerByRow(String line) {
+		String[] split = line.split("\t");
+
+		if (ignoreLogEventHandler(split)) {
+			return;
+		}
+
+		tryAddLogEventHandler(split[0]);
+	}
+
+	/**
+	 * DOCME
+	 * 
+	 * @param handler
+	 * @since DOCME add inception version number
+	 */
+	private void addLogEventHandlerInternal(LogEventHandler handler) {
+		System.out.println("LogManager: addLogEventHandler " + handler);
+		rootLogger.addLogEventHandler(handler);
+	}
+
+	/**
+	 * DOCME add JavaDoc for method addLogEventHandlers
+	 *
+	 * @since DOCME add inception version number
+	 */
+	private void addLogEventHandlers() {
+		try {
+			Files.readAllLines(Paths.get(LogManager.class.getResource("/LogEventHandlers.csv").toURI()))
+					.forEach(line -> {
+						if (!line.isEmpty()) {
+							addLogEventHandlerByRow(line);
+						}
+					});
+		} catch (IOException | URISyntaxException e) {
+			// TODO implement error handling
+			throw new RuntimeException("Error at 'addLogEventHandlers': " + e.getMessage(), e);
+		}
+	}
+
+	/**
+	 * DOCME
+	 * 
+	 * @param clazz
+	 * @return
+	 * @since 0.1.0
+	 */
+	Logger getLoggerInternal(Class<?> clazz) {
+		return CLASS_LOGGERS.computeIfAbsent(clazz, c -> new DefaultLogger(rootLogger, clazz));
+	}
+
+	/**
+	 * @param split
+	 * @return
+	 * @since DOCME add inception version number
+	 */
+	private boolean ignoreLogEventHandler(String[] split) {
+		return split.length > 1 && "noTest".equals(split[1]);
+	}
+
+	private void logInitialization() {
+		getLogger(getClass()).debug("initialized");
+	}
+
+	/**
+	 * DOCME
+	 * 
+	 * @param handler
+	 * @since DOCME add inception version number
+	 */
+	private void removeLogEventHandlerInternal(LogEventHandler handler) {
+		rootLogger.removeLogEventHandler(handler);
 	}
 
 	/**
@@ -98,7 +162,7 @@ public class LogManager {
 	 * @param name
 	 * @since DOCME add inception version number
 	 */
-	private static void tryAddLogEventHandler(String name) {
+	private void tryAddLogEventHandler(String name) {
 		LogEventHandler handler;
 
 		try {
@@ -108,13 +172,6 @@ public class LogManager {
 			return;
 		}
 
-		addLogEventHandler(handler);
-	}
-
-	/**
-	 * @since 0.1.0
-	 */
-	private LogManager() {
-		// nothing to do
+		addLogEventHandlerInternal(handler);
 	}
 }

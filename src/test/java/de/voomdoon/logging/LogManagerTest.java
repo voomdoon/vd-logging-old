@@ -12,6 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import de.voomdoon.logging.test.TestLogEventHandler;
+import de.voomdoon.logging.test.TestLogEventHandler2;
 
 /**
  * Test class for {@link LogManager}.
@@ -212,6 +213,12 @@ class LogManagerTest {
 		}
 	}
 
+	@BeforeEach
+	void beforeEach() {
+		TestLogEventHandler.getInstances().clear();
+		TestLogEventHandler2.getInstances().clear();
+	}
+
 	/**
 	 * DOCME add JavaDoc for method test_initialization
 	 *
@@ -220,8 +227,25 @@ class LogManagerTest {
 	 */
 	@Test
 	void test_initialization_addHandlers() throws Exception {
-		LogManager.getLogger(getClass()).info("test-message");
+		LogManager manager = new LogManager();
+
+		manager.getLoggerInternal(getClass()).info("test-message");
 
 		assertThat(TestLogEventHandler.getInstances()).isNotEmpty();
+	}
+
+	/**
+	 * DOCME add JavaDoc for method test_initialization
+	 *
+	 * @throws Exception
+	 * @since DOCME add inception version number
+	 */
+	@Test
+	void test_initialization_addHandlers_ignoreNoTest() throws Exception {
+		LogManager manager = new LogManager();
+
+		manager.getLoggerInternal(getClass()).info("test-message");
+
+		assertThat(TestLogEventHandler2.getInstances()).isEmpty();
 	}
 }
