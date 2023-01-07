@@ -214,7 +214,7 @@ class LogManagerTest {
 
 	/**
 	 * DOCME add JavaDoc for method test_initialization
-	 * 
+	 *
 	 * @throws Exception
 	 * @since DOCME add inception version number
 	 */

@@ -11,7 +11,7 @@ public interface LogEventHandler {
 
 	/**
 	 * Handles a {@link LogEvent}.
-	 * 
+	 *
 	 * @param logEvent
 	 *            The {@link LogEvent} to handle.
 	 * @since 0.1.0

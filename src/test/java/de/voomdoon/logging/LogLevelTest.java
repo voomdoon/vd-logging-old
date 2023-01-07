@@ -28,7 +28,7 @@ class LogLevelTest {
 
 	/**
 	 * Test method for {@link LogLevel#getPriority()} to check for unique values.
-	 * 
+	 *
 	 * @since 0.1.0
 	 */
 	@Test

@@ -86,7 +86,7 @@ public class TestLogEvent implements LogEvent {
 
 	/**
 	 * DOCME add JavaDoc for method setError
-	 * 
+	 *
 	 * @param error
 	 * @return {@link TestLogEvent}
 	 * @since 0.1.0
@@ -133,7 +133,7 @@ public class TestLogEvent implements LogEvent {
 
 	/**
 	 * DOCME add JavaDoc for method setTimeStamp
-	 * 
+	 *
 	 * @param timestamp
 	 * @return
 	 * @since 0.1.0

@@ -33,6 +33,8 @@ public class LogManager {
 
 	static {
 		ROOT_LOGGER = new SynchronousRootLogger();
+
+		// TODO add ConsoleLogEventHandler only if there is no other
 		ROOT_LOGGER.addLogEventHandler(new ConsoleLogEventHandler());
 
 		addLogEventHandlers();
@@ -40,7 +42,7 @@ public class LogManager {
 
 	/**
 	 * Adds a {@link LogEventHandler}.
-	 * 
+	 *
 	 * @param handler
 	 *            {@link LogEventHandler}
 	 * @since 0.1.0
@@ -51,29 +53,8 @@ public class LogManager {
 	}
 
 	/**
-	 * @param clazz
-	 *            {@link Class}
-	 * @return {@link Logger}
-	 * @since 0.1.0
-	 */
-	public static Logger getLogger(Class<?> clazz) {
-		return CLASS_LOGGERS.computeIfAbsent(clazz, c -> new DefaultLogger(ROOT_LOGGER, clazz));
-	}
-
-	/**
-	 * Removes a {@link LogEventHandler}.
-	 * 
-	 * @param handler
-	 *            {@link LogEventHandler}
-	 * @since 0.1.0
-	 */
-	public static void removeLogEventHandler(LogEventHandler handler) {
-		ROOT_LOGGER.removeLogEventHandler(handler);
-	}
-
-	/**
 	 * DOCME add JavaDoc for method addLogEventHandlers
-	 * 
+	 *
 	 * @since DOCME add inception version number
 	 */
 	private static void addLogEventHandlers() {
@@ -91,8 +72,29 @@ public class LogManager {
 	}
 
 	/**
+	 * @param clazz
+	 *            {@link Class}
+	 * @return {@link Logger}
+	 * @since 0.1.0
+	 */
+	public static Logger getLogger(Class<?> clazz) {
+		return CLASS_LOGGERS.computeIfAbsent(clazz, c -> new DefaultLogger(ROOT_LOGGER, clazz));
+	}
+
+	/**
+	 * Removes a {@link LogEventHandler}.
+	 *
+	 * @param handler
+	 *            {@link LogEventHandler}
+	 * @since 0.1.0
+	 */
+	public static void removeLogEventHandler(LogEventHandler handler) {
+		ROOT_LOGGER.removeLogEventHandler(handler);
+	}
+
+	/**
 	 * DOCME add JavaDoc for method tryAddLogEventHandler
-	 * 
+	 *
 	 * @param name
 	 * @since DOCME add inception version number
 	 */

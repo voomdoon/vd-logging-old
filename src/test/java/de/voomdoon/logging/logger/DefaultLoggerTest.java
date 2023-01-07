@@ -13,7 +13,7 @@ public class DefaultLoggerTest extends LoggerTest {
 
 	/**
 	 * DOCME add JavaDoc for constructor DefaultLoggerTest
-	 * 
+	 *
 	 * @since 0.1.0
 	 */
 	public DefaultLoggerTest() {
