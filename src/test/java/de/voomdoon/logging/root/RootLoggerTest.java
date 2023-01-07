@@ -50,6 +50,37 @@ public abstract class RootLoggerTest {
 		assertThat(handler.getEvents()).hasSize(1);
 	}
 
+	/**
+	 * @throws Exception
+	 * @since 0.1.0
+	 */
+	@Test
+	void testGetLogEventHanderNames_className() throws Exception {
+		TestLogEventHandler handler = new TestLogEventHandler();
+
+		rootLogger.addLogEventHandler(handler);
+
+		assertThat(rootLogger.getLogEventHanderNames()).contains(handler.getClass().getSimpleName());
+	}
+
+	/**
+	 * @throws Exception
+	 * @since 0.1.0
+	 */
+	@Test
+	void testGetLogEventHanderNames_empty() throws Exception {
+		TestLogEventHandler handler = new TestLogEventHandler();
+
+		rootLogger.addLogEventHandler(handler);
+		rootLogger.removeLogEventHandler(handler);
+
+		assertThat(rootLogger.getLogEventHanderNames()).isEmpty();
+	}
+
+	/**
+	 * @throws Exception
+	 * @since 0.1.0
+	 */
 	@Test
 	void testLog_LogEvent() throws Exception {
 		rootLogger.log(new TestLogEvent());

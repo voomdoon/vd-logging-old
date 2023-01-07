@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import de.voomdoon.logging.LogEvent;
 import de.voomdoon.logging.LogEventHandler;
@@ -37,6 +39,11 @@ public class SynchronousRootLogger implements RootLogger {
 		if (!logEventHandlers.contains(Objects.requireNonNull(handler, "handler"))) {
 			logEventHandlers.add(handler);
 		}
+	}
+
+	@Override
+	public Set<String> getLogEventHanderNames() {
+		return logEventHandlers.stream().map(Object::getClass).map(Class::getSimpleName).collect(Collectors.toSet());
 	}
 
 	/**

@@ -143,7 +143,8 @@ public class LogManager {
 	}
 
 	private void logInitialization() {
-		getLogger(getClass()).debug("initialized");
+		getLogger(getClass())
+				.debug("initialized with " + rootLogger.getLogEventHanderNames().stream().sorted().toList());
 	}
 
 	/**

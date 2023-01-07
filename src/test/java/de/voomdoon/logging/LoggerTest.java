@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -32,8 +33,13 @@ public abstract class LoggerTest {
 		 */
 		@Override
 		public void addLogEventHandler(LogEventHandler handler) {
-			// TODO implement addLogEventHandler
-			throw new UnsupportedOperationException("'addLogEventHandler' not implemented at 'RootLogger'!");
+			throw new UnsupportedOperationException("'addLogEventHandler' not implemented at 'TestRootLogger'!");
+		}
+
+		@Override
+		public Set<String> getLogEventHanderNames() {
+			throw new UnsupportedOperationException(
+					"Method 'getLogEventHanderNames' not implemented at 'TestRootLogger'!");
 		}
 
 		/**
@@ -49,15 +55,9 @@ public abstract class LoggerTest {
 		 */
 		@Override
 		public void removeLogEventHandler(LogEventHandler handler) {
-			// TODO implement removeLogEventHandler
-			throw new UnsupportedOperationException("'removeLogEventHandler' not implemented at 'RootLogger'!");
+			throw new UnsupportedOperationException("'removeLogEventHandler' not implemented at 'TestRootLogger'!");
 		}
 	}
-
-	/**
-	 * @since 0.1.0
-	 */
-	protected static TestRootLogger ROOT_LOGGER = new TestRootLogger();
 
 	/**
 	 * @since 0.1.0
@@ -67,17 +67,22 @@ public abstract class LoggerTest {
 	/**
 	 * @since 0.1.0
 	 */
+	protected static TestRootLogger ROOT_LOGGER = new TestRootLogger();
+
+	/**
+	 * @since 0.1.0
+	 */
 	protected Throwable error = new Throwable();
 
 	/**
 	 * @since 0.1.0
 	 */
-	protected Object message = new Object();
+	private Logger logger;
 
 	/**
 	 * @since 0.1.0
 	 */
-	private Logger logger;
+	protected Object message = new Object();
 
 	/**
 	 * @param logger

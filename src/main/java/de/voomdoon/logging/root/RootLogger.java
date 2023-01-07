@@ -1,5 +1,7 @@
 package de.voomdoon.logging.root;
 
+import java.util.Set;
+
 import de.voomdoon.logging.LogEvent;
 import de.voomdoon.logging.LogEventHandler;
 
@@ -18,6 +20,12 @@ public interface RootLogger {
 	 * @since 0.1.0
 	 */
 	void addLogEventHandler(LogEventHandler handler);
+
+	/**
+	 * @return
+	 * @since 0.1.0
+	 */
+	Set<String> getLogEventHanderNames();
 
 	/**
 	 * @param logEvent
