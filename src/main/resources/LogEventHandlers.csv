@@ -1,4 +1,5 @@
-de.voomdoon.logging.test.TestLogEventHandler
-de.voomdoon.logging.test.TestLogEventHandler2	noTest
+class	noTest	noCount
+de.voomdoon.logging.test.TestLogEventHandler		true
+de.voomdoon.logging.test.TestLogEventHandler2	true	true
 
-de.voomdoon.logging.connector.log4j2.Log4j2LogEventHandler	noTest
+de.voomdoon.logging.connector.log4j2.Log4j2LogEventHandler	true
