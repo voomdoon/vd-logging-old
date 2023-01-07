@@ -100,7 +100,7 @@ public class ConsoleLogEventHandler implements LogEventHandler {
 		sb.append(formatTimestamp(logEvent.getTimestamp()));
 		sb.append(" ");
 		sb.append(logEvent.getLevel().toString());
-		sb.append(" ");
+		sb.append("\t");
 		sb.append(getName(logEvent.getSourceClass()));
 		sb.append(": ");
 		sb.append(logEvent.getMessage());
