@@ -106,7 +106,7 @@ class LogEventHandlersInitializer {
 	 * @since DOCME add inception version number
 	 */
 	private boolean ignoreLogEventHandlerAtTest(String[] split, String[] headline) {
-		return LoggingInternalUtil.has(split, "noTest", headline) && LoggingInternalUtil.isAtTest();
+		return LoggingInternalUtil.has(split, "ignoreAtTest", headline) && LoggingInternalUtil.isAtTest();
 	}
 
 	/**
