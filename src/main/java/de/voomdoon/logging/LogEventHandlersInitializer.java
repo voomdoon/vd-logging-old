@@ -1,10 +1,11 @@
 package de.voomdoon.logging;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.InvocationTargetException;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -15,27 +16,27 @@ import de.voomdoon.logging.root.RootLogger;
 
 /**
  * DOCME
- * 
+ *
  * @since DOCME add inception version number
  */
 class LogEventHandlersInitializer {
 
 	/**
 	 * DOCME
-	 * 
+	 *
 	 * @since DOCME add inception version number
 	 */
 	private LogManager logManager;
 
 	/**
 	 * DOCME
-	 * 
+	 *
 	 * @since DOCME add inception version number
 	 */
 	private RootLogger rootLogger;
 
 	/**
-	 * 
+	 *
 	 * @param rootLogger
 	 * @since DOCME add inception version number
 	 */
@@ -45,7 +46,19 @@ class LogEventHandlersInitializer {
 	}
 
 	/**
-	 * 
+	 * @param logManager
+	 * @since DOCME add inception version number
+	 */
+	public void initialize() {
+		Set<String> added = addLogEventHandlers();
+
+		if (added.isEmpty()) {
+			rootLogger.addLogEventHandler(new ConsoleLogEventHandler());
+		}
+	}
+
+	/**
+	 *
 	 * @param line
 	 * @param headline
 	 * @param logManager
@@ -70,7 +83,7 @@ class LogEventHandlersInitializer {
 
 	/**
 	 * DOCME add JavaDoc for method addLogEventHandlers
-	 * 
+	 *
 	 * @param logManager
 	 *
 	 * @return DOCME
@@ -79,9 +92,9 @@ class LogEventHandlersInitializer {
 	private Set<String> addLogEventHandlers() {
 		Set<String> result = new HashSet<>();
 
-		try {
-			List<String> lines = Files
-					.readAllLines(Paths.get(LogManager.class.getResource("/LogEventHandlers.csv").toURI()));
+		try (InputStream resource = LogManager.class.getResourceAsStream("/LogEventHandlers.csv")) {
+			List<String> lines = new BufferedReader(new InputStreamReader(resource, StandardCharsets.UTF_8)).lines()
+					.toList();
 			String[] headline = null;
 
 			for (String line : lines) {
@@ -91,8 +104,7 @@ class LogEventHandlersInitializer {
 					result.addAll(addLogEventHandlerByRow(line, headline));
 				}
 			}
-		} catch (IOException | URISyntaxException e) {
-			// TODO implement error handling
+		} catch (IOException e) {
 			throw new RuntimeException("Error at 'addLogEventHandlers': " + e.getMessage(), e);
 		}
 
@@ -107,18 +119,6 @@ class LogEventHandlersInitializer {
 	 */
 	private boolean ignoreLogEventHandlerAtTest(String[] split, String[] headline) {
 		return LoggingInternalUtil.has(split, "ignoreAtTest", headline) && LoggingInternalUtil.isAtTest();
-	}
-
-	/**
-	 * @param logManager
-	 * @since DOCME add inception version number
-	 */
-	public void initialize() {
-		Set<String> added = addLogEventHandlers();
-
-		if (added.isEmpty()) {
-			rootLogger.addLogEventHandler(new ConsoleLogEventHandler());
-		}
 	}
 
 	/**
