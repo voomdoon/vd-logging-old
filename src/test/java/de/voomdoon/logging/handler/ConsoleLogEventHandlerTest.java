@@ -35,7 +35,7 @@ class ConsoleLogEventHandlerTest extends LogEventHandlerTest {
 	 * @since 0.1.0
 	 */
 	@AfterAll
-	static void deinit() {
+	public static void deinit() {
 		TimeZone.setDefault(timeZoneOriginal);
 	}
 
@@ -43,7 +43,7 @@ class ConsoleLogEventHandlerTest extends LogEventHandlerTest {
 	 * @since 0.1.0
 	 */
 	@BeforeAll
-	static void init() {
+	public static void init() {
 		timeZoneOriginal = TimeZone.getDefault();
 		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
 	}

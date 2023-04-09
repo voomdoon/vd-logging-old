@@ -75,7 +75,7 @@ public class LogManager {
 
 	/**
 	 * DOCME
-	 * 
+	 *
 	 * @param handler
 	 * @since DOCME add inception version number
 	 */
@@ -86,7 +86,7 @@ public class LogManager {
 
 	/**
 	 * DOCME
-	 * 
+	 *
 	 * @param clazz
 	 * @return
 	 * @since 0.1.0
@@ -102,7 +102,7 @@ public class LogManager {
 
 	/**
 	 * DOCME
-	 * 
+	 *
 	 * @param handler
 	 * @since DOCME add inception version number
 	 */
