@@ -114,4 +114,24 @@ public class LogEventImpl implements LogEvent {
 	public void setSourceClass(Class<?> sourceClass) {
 		this.sourceClass = sourceClass;
 	}
+
+	/**
+	 * @since 0.1.0
+	 */
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("LogEventImpl(timestamp: ");
+		builder.append(timestamp);
+		builder.append(", level: ");
+		builder.append(level);
+		builder.append(", message: ");
+		builder.append(message);
+		builder.append(", sourceClass: ");
+		builder.append(sourceClass);
+		builder.append(", error: ");
+		builder.append(error);
+		builder.append(")");
+		return builder.toString();
+	}
 }
