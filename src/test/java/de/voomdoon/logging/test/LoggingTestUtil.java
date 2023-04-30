@@ -12,7 +12,7 @@ import de.voomdoon.logging.LogEventHandler;
  *
  * @author André Schulz
  *
- * @since DOCME add inception version number
+ * @since 0.1.0
  */
 public class LoggingTestUtil {
 
@@ -47,7 +47,7 @@ public class LoggingTestUtil {
 
 		/**
 		 * @return err
-		 * @since DOCME add inception version number
+		 * @since 0.1.0
 		 */
 		public String getErr() {
 			return err;
@@ -55,7 +55,7 @@ public class LoggingTestUtil {
 
 		/**
 		 * @return out
-		 * @since DOCME add inception version number
+		 * @since 0.1.0
 		 */
 		public String getOut() {
 			return out;

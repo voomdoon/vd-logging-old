@@ -65,7 +65,7 @@ public class ConsoleLogEventHandler implements LogEventHandler {
 	 *
 	 * @param sourceClass
 	 * @return
-	 * @since DOCME add inception version number
+	 * @since 0.1.0
 	 */
 	private Object getName(Class<?> sourceClass) {
 		if (sourceClass == null) {

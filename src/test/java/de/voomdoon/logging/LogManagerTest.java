@@ -223,7 +223,7 @@ class LogManagerTest {
 	 * DOCME add JavaDoc for method test_initialization
 	 *
 	 * @throws Exception
-	 * @since DOCME add inception version number
+	 * @since 0.1.0
 	 */
 	@Test
 	void test_initialization_addHandlers() throws Exception {
@@ -238,7 +238,7 @@ class LogManagerTest {
 	 * DOCME add JavaDoc for method test_initialization
 	 *
 	 * @throws Exception
-	 * @since DOCME add inception version number
+	 * @since 0.1.0
 	 */
 	@Test
 	void test_initialization_addHandlers_ignoreNoTest() throws Exception {

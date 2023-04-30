@@ -17,28 +17,28 @@ import de.voomdoon.logging.root.RootLogger;
 /**
  * DOCME
  *
- * @since DOCME add inception version number
+ * @since 0.1.0
  */
 class LogEventHandlersInitializer {
 
 	/**
 	 * DOCME
 	 *
-	 * @since DOCME add inception version number
+	 * @since 0.1.0
 	 */
 	private LogManager logManager;
 
 	/**
 	 * DOCME
 	 *
-	 * @since DOCME add inception version number
+	 * @since 0.1.0
 	 */
 	private RootLogger rootLogger;
 
 	/**
 	 *
 	 * @param rootLogger
-	 * @since DOCME add inception version number
+	 * @since 0.1.0
 	 */
 	public LogEventHandlersInitializer(LogManager logManager, RootLogger rootLogger) {
 		this.logManager = logManager;
@@ -47,7 +47,7 @@ class LogEventHandlersInitializer {
 
 	/**
 	 * @param logManager
-	 * @since DOCME add inception version number
+	 * @since 0.1.0
 	 */
 	public void initialize() {
 		Set<String> added = addLogEventHandlers();
@@ -63,7 +63,7 @@ class LogEventHandlersInitializer {
 	 * @param headline
 	 * @param logManager
 	 * @return DOCME
-	 * @since DOCME add inception version number
+	 * @since 0.1.0
 	 */
 	private Set<String> addLogEventHandlerByRow(String line, String[] headline) {
 		String[] split = line.split("\t");
@@ -87,7 +87,7 @@ class LogEventHandlersInitializer {
 	 * @param logManager
 	 *
 	 * @return DOCME
-	 * @since DOCME add inception version number
+	 * @since 0.1.0
 	 */
 	private Set<String> addLogEventHandlers() {
 		Set<String> result = new HashSet<>();
@@ -115,7 +115,7 @@ class LogEventHandlersInitializer {
 	 * @param split
 	 * @param headline
 	 * @return
-	 * @since DOCME add inception version number
+	 * @since 0.1.0
 	 */
 	private boolean ignoreLogEventHandlerAtTest(String[] split, String[] headline) {
 		return LoggingInternalUtil.has(split, "ignoreAtTest", headline) && LoggingInternalUtil.isAtTest();
@@ -126,7 +126,7 @@ class LogEventHandlersInitializer {
 	 *
 	 * @param name
 	 * @return DOCME
-	 * @since DOCME add inception version number
+	 * @since 0.1.0
 	 */
 	private Set<String> tryAddLogEventHandler(String name) {
 		LogEventHandler handler;

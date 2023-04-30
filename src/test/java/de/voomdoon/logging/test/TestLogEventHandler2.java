@@ -20,7 +20,7 @@ public class TestLogEventHandler2 implements LogEventHandler {
 
 	/**
 	 * @return instances
-	 * @since DOCME add inception version number
+	 * @since 0.1.0
 	 */
 	public static List<TestLogEventHandler2> getInstances() {
 		return INSTANCES;

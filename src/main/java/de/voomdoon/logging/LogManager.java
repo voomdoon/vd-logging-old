@@ -77,7 +77,7 @@ public class LogManager {
 	 * DOCME
 	 *
 	 * @param handler
-	 * @since DOCME add inception version number
+	 * @since 0.1.0
 	 */
 	void addLogEventHandlerInternal(LogEventHandler handler) {
 		System.out.println("LogManager: addLogEventHandler " + handler);
@@ -104,7 +104,7 @@ public class LogManager {
 	 * DOCME
 	 *
 	 * @param handler
-	 * @since DOCME add inception version number
+	 * @since 0.1.0
 	 */
 	private void removeLogEventHandlerInternal(LogEventHandler handler) {
 		rootLogger.removeLogEventHandler(handler);
