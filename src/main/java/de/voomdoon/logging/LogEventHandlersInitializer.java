@@ -93,6 +93,10 @@ class LogEventHandlersInitializer {
 		Set<String> result = new HashSet<>();
 
 		try (InputStream resource = LogManager.class.getResourceAsStream("/LogEventHandlers.csv")) {
+			if (resource == null) {
+				throw new IllegalStateException("Failed to get LogEventHandlers.csv!");
+			}
+
 			List<String> lines = new BufferedReader(new InputStreamReader(resource, StandardCharsets.UTF_8)).lines()
 					.toList();
 			String[] headline = null;
