@@ -113,7 +113,7 @@ class LogManagerTest {
 		 * @since 0.1.0
 		 */
 		@BeforeEach
-		void setUp() {
+		void beforeEach() {
 			outOriginal = System.out;
 		}
 
@@ -121,7 +121,7 @@ class LogManagerTest {
 		 * @since 0.1.0
 		 */
 		@AfterEach
-		void tearDown() {
+		void afterEach() {
 			System.setOut(outOriginal);
 		}
 
@@ -213,6 +213,9 @@ class LogManagerTest {
 		}
 	}
 
+	/**
+	 * @since 0.1.0
+	 */
 	@BeforeEach
 	void beforeEach() {
 		TestLogEventHandler.getInstances().clear();

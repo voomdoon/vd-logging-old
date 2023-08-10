@@ -64,7 +64,7 @@ class ConsoleLogEventHandlerTest extends LogEventHandlerTest {
 	 * @since 0.1.0
 	 */
 	@BeforeEach
-	void setUp() {
+	void beforeEach() {
 		outOriginal = System.out;
 	}
 
@@ -72,7 +72,7 @@ class ConsoleLogEventHandlerTest extends LogEventHandlerTest {
 	 * @since 0.1.0
 	 */
 	@AfterEach
-	void tearDown() {
+	void afterEach() {
 		System.setOut(outOriginal);
 	}
 

@@ -97,7 +97,7 @@ public abstract class LoggerTest {
 	 * @since 0.1.0
 	 */
 	@AfterEach
-	void tearDown() {
+	void afterEach() {
 		EVENTS.clear();
 	}
 
