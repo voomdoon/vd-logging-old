@@ -9,6 +9,7 @@ import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import de.voomdoon.logging.test.TestLogEventHandler;
@@ -30,7 +31,8 @@ class LogManagerTest {
 	 *
 	 * @since 0.1.0
 	 */
-	static class AddLogEventHandler {
+	@Nested
+	class AddLogEventHandler {
 
 		/**
 		 * @throws Exception
@@ -102,7 +104,8 @@ class LogManagerTest {
 	 *
 	 * @since 0.1.0
 	 */
-	static class GetLogger_Class_Test {
+	@Nested
+	class GetLogger_Class_Test {
 
 		/**
 		 * @since 0.1.0
@@ -112,17 +115,17 @@ class LogManagerTest {
 		/**
 		 * @since 0.1.0
 		 */
-		@BeforeEach
-		void beforeEach() {
-			outOriginal = System.out;
+		@AfterEach
+		void afterEach() {
+			System.setOut(outOriginal);
 		}
 
 		/**
 		 * @since 0.1.0
 		 */
-		@AfterEach
-		void afterEach() {
-			System.setOut(outOriginal);
+		@BeforeEach
+		void beforeEach() {
+			outOriginal = System.out;
 		}
 
 		/**
@@ -171,7 +174,8 @@ class LogManagerTest {
 	 *
 	 * @since 0.1.0
 	 */
-	static class RemoveLogEventHandler {
+	@Nested
+	class RemoveLogEventHandler {
 
 		/**
 		 * @throws Exception
