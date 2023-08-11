@@ -74,7 +74,7 @@ class LogEventHandlersInitializer {
 
 		Set<String> result = tryAddLogEventHandler(split[0]);
 
-		if (LoggingInternalUtil.has(split, "noCount", headline)) {
+		if (LoggingInternalUtil.hasTrue(split, "noCount", headline)) {
 			return Collections.emptySet();
 		}
 
@@ -122,7 +122,7 @@ class LogEventHandlersInitializer {
 	 * @since 0.1.0
 	 */
 	private boolean ignoreLogEventHandlerAtTest(String[] split, String[] headline) {
-		return LoggingInternalUtil.has(split, "ignoreAtTest", headline) && LoggingInternalUtil.isAtTest();
+		return LoggingInternalUtil.hasTrue(split, "ignoreAtTest", headline) && LoggingInternalUtil.isAtTest();
 	}
 
 	/**

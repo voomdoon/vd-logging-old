@@ -14,7 +14,7 @@ class LoggingInternalUtil {
 	 * @return
 	 * @since 0.1.0
 	 */
-	static boolean has(String[] split, String value, String[] headline) {
+	static boolean hasTrue(String[] split, String value, String[] headline) {
 		int index = getIndex(headline, value);
 
 		return split.length > index && "true".equals(split[index]);
