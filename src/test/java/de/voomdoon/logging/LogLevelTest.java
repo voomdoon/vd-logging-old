@@ -22,7 +22,7 @@ class LogLevelTest {
 	 * @since 0.1.0
 	 */
 	@Test
-	public void testGetPriority_relevance() {
+	void testGetPriority_relevance() {
 		assertThat(LogLevel.ERROR.getPriority()).isGreaterThan(LogLevel.DEBUG.getPriority());
 	}
 
