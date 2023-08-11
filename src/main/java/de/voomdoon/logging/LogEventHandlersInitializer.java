@@ -53,7 +53,7 @@ class LogEventHandlersInitializer {
 		Set<String> added = addLogEventHandlers();
 
 		if (added.isEmpty()) {
-			rootLogger.addLogEventHandler(new ConsoleLogEventHandler());
+			rootLogger.addLogEventHandler(new ConsoleLogEventHandler());// TESTME
 		}
 	}
 
@@ -78,7 +78,7 @@ class LogEventHandlersInitializer {
 			return Collections.emptySet();
 		}
 
-		return result;
+		return result;// TESTME
 	}
 
 	/**
@@ -112,7 +112,7 @@ class LogEventHandlersInitializer {
 			throw new RuntimeException("Error at 'addLogEventHandlers': " + e.getMessage(), e);
 		}
 
-		return result;
+		return result;// TESTME
 	}
 
 	/**
@@ -144,6 +144,6 @@ class LogEventHandlersInitializer {
 
 		logManager.addLogEventHandlerInternal(handler);
 
-		return Collections.singleton(handler.getClass().getSimpleName());
+		return Collections.singleton(handler.getClass().getSimpleName());// TESTME
 	}
 }
