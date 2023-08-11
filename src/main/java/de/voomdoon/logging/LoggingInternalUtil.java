@@ -6,22 +6,8 @@ package de.voomdoon.logging;
 class LoggingInternalUtil {
 
 	/**
-	 * @param row
-	 * @param value
-	 * @return
-	 * @since 0.1.0
-	 */
-	private static int getIndex(String[] row, String value) {
-		for (int i = 0; i < row.length; i++) {
-			if (value.equals(row[i])) {
-				return i;
-			}
-		}
-
-		return -1;
-	}
-
-	/**
+	 * DOCME
+	 * 
 	 * @param split
 	 * @param value
 	 * @param headline
@@ -35,6 +21,8 @@ class LoggingInternalUtil {
 	}
 
 	/**
+	 * DOCME
+	 * 
 	 * @return
 	 * @since 0.1.0
 	 */
@@ -47,7 +35,25 @@ class LoggingInternalUtil {
 			}
 		}
 
-		return false;
+		return false;// TESTME
+	}
+
+	/**
+	 * DOCME
+	 * 
+	 * @param row
+	 * @param value
+	 * @return
+	 * @since 0.1.0
+	 */
+	private static int getIndex(String[] row, String value) {
+		for (int i = 0; i < row.length; i++) {
+			if (value.equals(row[i])) {
+				return i;
+			}
+		}
+
+		return -1;
 	}
 
 	/**
